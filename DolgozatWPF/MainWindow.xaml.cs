@@ -45,5 +45,21 @@ namespace DolgozatWPF
             }
             dataGrid.ItemsSource = dolgozatok;
         }
+        
+        private void hozzaadas(object sender, RoutedEventArgs e)
+        {
+            int eletkora;
+            int pontszama;
+            if (nev.Text.Length > 0 && int.TryParse(eletkor.Text, out eletkora) && eletkora > 6 && int.TryParse(pontszam.Text, out pontszama) && pontszama >= 0 && pontszama <= 100)
+            {
+                dolgozatok.Add(new Dolgozat(nev.Text, eletkora, pontszama));
+                dataGrid.ItemsSource = dolgozatok;
+                dataGrid.Items.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Nem megfelelő adatok a beviteli mezőkben!");
+            }
+        }
     }
 }
